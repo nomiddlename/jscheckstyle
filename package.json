@@ -13,10 +13,11 @@
       "url": "https://github.com/csausdev/jscheckstyle"
   },
   "dependencies": {
-      { "cli-table": ">=0.0.1" },
-      { "node-burrito": ">=0.2.8" }
+      "cli-table": ">=0.0.1",
+      "burrito": ">=0.2.8"
   }, 
   "devDependencies": {
-      { "vows": ">=0.5" }
+      "vows": ">=0.5",
+      "sandboxed-module": ">=0.1.1"
   }    
 }
