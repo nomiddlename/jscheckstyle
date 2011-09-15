@@ -1,0 +1,22 @@
+{
+  "name": "jscheckstyle",
+  "version": "0.0.1",
+  "description": "Static analysis tool for javascript - calculates cyclomatic complexity, amongst other things",
+  "keywords": [ "static", "analysis", "cyclomatic", "complexity" ],
+  "main": "lib/jscheckstyle",
+  "directories": {
+     "bin": "bin",
+     "lib": "lib"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/csausdev/jscheckstyle"
+  },
+  "dependencies": {
+      { "cli-table": ">=0.0.1" },
+      { "node-burrito": ">=0.2.8" }
+  }, 
+  "devDependencies": {
+      { "vows": ">=0.5" }
+  }    
+}
