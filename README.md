@@ -2,8 +2,7 @@
 A command-line tool for analysing javascript source, providing measurements of function length, number of arguments, and cyclomatic complexity.
 
 ## Installation
-For now, you'll have to just clone this repo, but soon this will work:
-   npm install jscheckstyle
+    npm install jscheckstyle
 
 ## Usage
     jscheckstyle some-javascript.js some-other-javascript.js (default output as nice table on command line)
