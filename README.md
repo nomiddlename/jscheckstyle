@@ -14,9 +14,11 @@ For now, you'll have to just clone this repo, but soon this will work:
 
 ## Rules
 There are three rules at the moment which will be violated if:
+
 * function length is greater than 30 lines
 * number of arguments to a function is greater than 5
 * cyclomatic complexity for a function is greater than 10
+
 ## TODO
 * Configurable rules (maybe you like functions that are longer or shorter)
 
