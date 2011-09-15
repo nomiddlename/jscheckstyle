@@ -81,7 +81,7 @@ vows.describe('analyser').addBatch({
     'given a function declared as a local variable': {
         topic: analyser.analyse(fs.readFileSync('test/fixtures/a-local-function.js', 'utf8')),
         'first result should have a name of cheese': function(result) {
-            assert.equal(result[0].shortName, 'test');
+            assert.equal(result[0].shortName, 'cheese');
         }
     }
 

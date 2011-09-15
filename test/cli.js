@@ -112,5 +112,10 @@ vows.describe('jscheckstyle command line').addBatch({
     then(
         filesProcessedShouldBe([]),
         outputShouldBe(validXML)
+    ),
+    'with arguments --violations --checkstyle file1.js':
+    then(
+        filesProcessedShouldBe([]),
+        outputShouldBe(validXML)
     )
 }).exportTo(module);

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle>
+<file name="/pants/file1.js">
+<error line="1" column="1" severity="error" message="longFunctionWithManyArguments is 33 lines long, maximum allowed is 30" source="FunctionLength"/>
+<error line="1" column="1" severity="error" message="longFunctionWithManyArguments has 7 arguments, maximum allowed is 5" source="NumberOfArguments"/>
+</file>
+</checkstyle>
