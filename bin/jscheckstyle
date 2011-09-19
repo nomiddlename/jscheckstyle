@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('jscheckstyle').cli(process.argv.slice(2));
+require('../lib/jscheckstyle').cli(process.argv.slice(2));

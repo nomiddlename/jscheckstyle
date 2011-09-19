@@ -2,11 +2,23 @@ var vows = require('vows'),
     assert = require('assert'),
     sandbox = require('sandboxed-module'),
     Table = require('cli-table'),
+    fakeF = {
+        walkSync: function(arg, cb) {
+            cb('dir1', '', ['file7.js', 'file8.js', 'file9.js']);
+        }
+    },
     fakeFS = function (filesProcessed) {
         return {
             readFileSync: function(file) {
                 filesProcessed.push(file);
                 return "var a=1";
+            },
+            statSync: function(arg) {
+                return {
+                    isDirectory: function() {
+                        return (arg.match(/\.js$/)) ? false : true;
+                    }
+                };
             }
         };
     },
@@ -67,7 +79,8 @@ var vows = require('vows'),
                     jscheckstyle = sandbox.require(
                         '../lib/jscheckstyle',
                         { requires:
-                          { 'fs': fakeFS(filesProcessed),
+                          { 'file': fakeF,
+                            'fs': fakeFS(filesProcessed),
                             'sys': fakeSys(this.callback),
                             'cli-table': Table
                           }
@@ -84,6 +97,11 @@ var vows = require('vows'),
     };
 
 vows.describe('jscheckstyle command line').addBatch({
+    'with arguments dir1':
+    then(
+        filesProcessedShouldBe(['file7.js','file8.js', 'file9.js']),
+        outputShouldBe(aNiceTable)
+    ),
     'with arguments file1.js file2.js file3.js':
     then(
         filesProcessedShouldBe(['file1.js','file2.js', 'file3.js']),
