@@ -31,6 +31,11 @@ var vows = require('vows'),
             }
         };
     },
+    fakeProcess = {
+        exit: function(code) {
+            assert.equal(code, 0);
+        }
+    },
     filesProcessedShouldBe = function(expectedFiles) {
         return function(context) {
             context['should read all the files on the command line'] = function(output) {
@@ -83,6 +88,9 @@ var vows = require('vows'),
                             'fs': fakeFS(filesProcessed),
                             'sys': fakeSys(this.callback),
                             'cli-table': Table
+                          },
+                          globals: {
+                            'process': fakeProcess
                           }
                         }
                     ),
