@@ -34,6 +34,9 @@ var vows = require('vows'),
     fakeProcess = {
         exit: function(code) {
             assert.equal(code, 0);
+        },
+        cwd: function() {
+            return 'foo/bar';
         }
     },
     filesProcessedShouldBe = function(expectedFiles) {
