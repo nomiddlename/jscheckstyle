@@ -20,5 +20,6 @@
   "devDependencies": {
       "vows": ">=0.5",
       "sandboxed-module": ">=0.1.1"
-  }    
+  },
+  "scripts": { "test": "vows --spec test/*.js" }    
 }

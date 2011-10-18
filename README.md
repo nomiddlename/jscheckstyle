@@ -18,6 +18,9 @@ There are three rules at the moment which will be violated if:
 * number of arguments to a function is greater than 5
 * cyclomatic complexity for a function is greater than 10
 
+## Exclusion
+To exclude certain directories or files from being checkstyled, simply create a .jscheckstyleignore file at current directory, and specify the directory or file name (relative to current directory) that you want to exclude.
+
 ## TODO
 * Configurable rules (maybe you like functions that are longer or shorter)
 
