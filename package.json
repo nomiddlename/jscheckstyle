@@ -1,6 +1,6 @@
 {
     "name": "jscheckstyle",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Static analysis tool for javascript - calculates cyclomatic complexity, amongst other things",
     "keywords": [
         "static",
