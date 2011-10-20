@@ -146,5 +146,123 @@ vows.describe('jscheckstyle command line').addBatch({
     then(
         filesProcessedShouldBe([]),
         outputShouldBe(validXML)
-    )
+    ),
+    'process exit': {
+        'topic': {
+            globals: {
+                'String': { 'red': 'dummy' },
+                'process': {
+                    'stdout': {
+                        'flush': function () {
+                            return true;
+                        }
+                    }
+                }
+            }
+        },
+        'should return 0 when the results have no violation': function (mocks) {
+            var exitCode, jscheckstyle, results;
+            mocks.globals.process.exit = function (code) {
+                exitCode = code;
+            };
+            jscheckstyle = sandbox.require(
+                '../lib/jscheckstyle',
+                mocks
+            );
+            results = [{
+                filename: 'fileX.js',
+                results: [
+                    { shortName: 'functionY',
+                        complexity: 2,
+                        lineStart: 10,
+                        lines: 20,
+                        ins: 2
+                    }
+                ]
+            }];
+            jscheckstyle.end(results);
+            assert.equal(exitCode, 0);
+        },
+        'should return 1 when the results have violation': function (mocks) {
+            var exitCode, jscheckstyle, results;
+            mocks.globals.process.exit = function (code) {
+                exitCode = code;
+            };
+            jscheckstyle = sandbox.require(
+                '../lib/jscheckstyle',
+                mocks
+            );
+            results = [{
+                filename: 'fileX.js',
+                results: [
+                    { shortName: 'functionY',
+                        complexity: 2,
+                        lineStart: 10,
+                        lines: 20,
+                        ins: 2,
+                        violations: [ { message: 'some error', source: 'FunctionLength' } ]
+                    }
+                ]
+            }];
+            jscheckstyle.end(results);
+            assert.equal(exitCode, 1);
+        },
+        'should return 0 when an exception is thrown while flushing and the results have no violation': function (mocks) {
+            var exitCode, jscheckstyle, results;
+            mocks.globals.process.exit = function (code) {
+                exitCode = code;
+            };
+            mocks.globals.process.stdout.flush = function () {
+                throw new Exception();
+            };
+            jscheckstyle = sandbox.require(
+                '../lib/jscheckstyle',
+                mocks
+            );
+            results = [{
+                filename: 'fileX.js',
+                results: [
+                    { shortName: 'functionY',
+                        complexity: 2,
+                        lineStart: 10,
+                        lines: 20,
+                        ins: 2
+                    }
+                ]
+            }];
+            jscheckstyle.end(results);
+            assert.equal(exitCode, 0);
+        },
+        'should return 0 when stdout is not flushed and the results have no violation': function (mocks) {
+            var exitCode, jscheckstyle, results;
+            mocks.globals.process.exit = function (code) {
+                exitCode = code;
+            };
+            mocks.globals.process.stdout.flush = function () {
+                return false;
+            };
+            mocks.globals.process.stdout.once = function (event, fn) {
+                if (event === 'drain') {
+                    fn();
+                }
+            };
+            jscheckstyle = sandbox.require(
+                '../lib/jscheckstyle',
+                mocks
+            );
+            results = [{
+                filename: 'fileX.js',
+                results: [
+                    { shortName: 'functionY',
+                        complexity: 2,
+                        lineStart: 10,
+                        lines: 20,
+                        ins: 2
+                    }
+                ]
+            }];
+            jscheckstyle.end(results);
+            assert.equal(exitCode, 0);
+        }
+    }
 }).exportTo(module);
