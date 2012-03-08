@@ -36,7 +36,7 @@ vows.describe('rules').addBatch({
                 },
                 'should return a list of violation objects': function(violations) {
                     assert.isArray(violations);
-                    assert.length(violations, 1);
+                    assert.lengthOf(violations, 1);
                     assert.deepEqual(violations, [
                         { lineStart: 5,
                           shortName: "cheese",
@@ -114,10 +114,10 @@ vows.describe('rules').addBatch({
                 ]);
             },
             'should ignore module.exports': function(violations) {
-                assert.length(violations.filter(function(result) { return result.shortName === 'module.exports' && result.violations; }), 0);
+                assert.lengthOf(violations.filter(function(result) { return result.shortName === 'module.exports' && result.violations; }), 0);
             },
             'should not ignore the long function': function(violations) {
-                assert.length(violations.filter(function(result) { return result.shortName === 'longFunction' && result.violations && result.violations.length === 1; }), 1);
+                assert.lengthOf(violations.filter(function(result) { return result.shortName === 'longFunction' && result.violations && result.violations.length === 1; }), 1);
             }
         }
     },

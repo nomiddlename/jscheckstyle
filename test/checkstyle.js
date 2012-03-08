@@ -49,7 +49,7 @@ vows.describe("checkstyle renderer").addBatch({
                 ]
             }]),
             'should return an empty array': function(results) {
-                assert.length(results, 0);
+                assert.lengthOf(results, 0);
             }
         },
         'when one rule is broken': {

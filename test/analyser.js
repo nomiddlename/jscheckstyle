@@ -10,7 +10,7 @@ vows.describe('analyser').addBatch({
             assert.isArray(result);
         },
         'result should be of length 1': function(result) {
-            assert.length(result, 1);
+            assert.lengthOf(result, 1);
         },
         'result': {
             topic: function(results) {
@@ -47,7 +47,7 @@ vows.describe('analyser').addBatch({
     'given two functions': {
         topic: analyser.analyse('function cheese(type) {\n return "gouda";\n}\nfunction pants() {\n return "on";\n }'),
         'result should be of length 2': function(result) {
-            assert.length(result, 2);
+            assert.lengthOf(result, 2);
         },
         'first result': {
             topic: function(results) {
