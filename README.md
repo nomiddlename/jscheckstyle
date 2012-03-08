@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/nomiddlename/jscheckstyle.png?branch=master)](http://travis-ci.org/nomiddlename/jscheckstyle)
+
 # Purpose
 A command-line tool for analysing javascript source, providing measurements of function length, number of arguments, and cyclomatic complexity.
 
