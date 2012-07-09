@@ -89,7 +89,7 @@ var vows = require('vows'),
                         { requires:
                           { 'file': fakeF,
                             'fs': fakeFS(filesProcessed),
-                            'sys': fakeSys(this.callback),
+                            'util': fakeSys(this.callback),
                             'cli-table': Table
                           },
                           globals: {
