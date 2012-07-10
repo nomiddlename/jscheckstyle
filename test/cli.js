@@ -9,6 +9,9 @@ var vows = require('vows'),
     },
     fakeFS = function (filesProcessed) {
         return {
+            existsSync: function(file) {
+                return true;
+            },
             readFileSync: function(file) {
                 filesProcessed.push(file);
                 return "var a=1";
