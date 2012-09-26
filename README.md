@@ -3,6 +3,8 @@
 # Purpose
 A command-line tool for analysing javascript source, providing measurements of function length, number of arguments, and cyclomatic complexity.
 
+NOTE: jshint now does most of these checks, http://www.elijahmanor.com/2012/09/control-complexity-of-your-javascript.html so you may not need this any more. Use jshint instead, it checks for a whole load of other things as well.
+
 ## Installation
     npm install jscheckstyle
 
