@@ -77,8 +77,8 @@ var vows = require('vows'),
         assert.match(output, /<checkstyle>[\s\S]*<\/checkstyle>/);
     },
     aNiceTable = function(output) {
-        assert.match(output, /┏[━┳]*┓/);
-        assert.match(output, /┗[━┻]*┛/);
+        assert.match(output, /┌[─┬]*┐/);
+        assert.match(output, /└[─┴]*┘/);
     },
     empty = function(output) {
         assert.isEmpty(output);
