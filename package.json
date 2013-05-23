@@ -1,32 +1,32 @@
 {
-    "name": "jscheckstyle",
-    "version": "0.0.8",
-    "description": "Static analysis tool for javascript - calculates cyclomatic complexity, amongst other things",
-    "keywords": [
-        "static",
-        "analysis",
-        "cyclomatic",
-        "complexity"
-    ],
-    "main": "lib/jscheckstyle",
-    "directories": {
-        "bin": "bin",
-        "lib": "lib"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/nomiddlename/jscheckstyle"
-    },
-    "dependencies": {
-        "cli-table": ">=0.2.0",
-        "burrito": "http://github.com/danbell/node-burrito/tarball/master",
-        "file": ">=0.1.1"
-    },
-    "devDependencies": {
-        "vows": "0.5.13",
-        "sandboxed-module": "0.1.3"
-    },
-    "scripts": {
-        "test": "vows --spec test/*.js"
-    }
+  "name": "jscheckstyle",
+  "version": "0.0.9",
+  "description": "Static analysis tool for javascript - calculates cyclomatic complexity, amongst other things",
+  "keywords": [
+    "static",
+    "analysis",
+    "cyclomatic",
+    "complexity"
+  ],
+  "main": "lib/jscheckstyle",
+  "directories": {
+    "bin": "bin",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nomiddlename/jscheckstyle"
+  },
+  "dependencies": {
+    "cli-table": ">=0.2.0",
+    "burrito": "http://github.com/danbell/node-burrito/tarball/master",
+    "file": ">=0.1.1"
+  },
+  "devDependencies": {
+    "vows": "0.5.13",
+    "sandboxed-module": "0.1.3"
+  },
+  "scripts": {
+    "test": "vows --spec test/*.js"
+  }
 }
