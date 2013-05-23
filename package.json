@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "cli-table": ">=0.2.0",
-        "burrito": ">=0.2.8",
+        "burrito": "http://github.com/danbell/node-burrito/tarball/master",
         "file": ">=0.1.1"
     },
     "devDependencies": {

@@ -54,7 +54,7 @@ vows.describe('analyser').addBatch({
                 return results[0];
             },
             'should have the correct properties': function(result) {
-                assert.deepEqual(result, { shortName: 'cheese', lineStart: 1, lines: 3, ins: 1, complexity: 2 });
+              assert.deepEqual(result, { shortName: 'cheese', lineStart: 1, lines: 3, ins: 1, complexity: 2, config: {} });
             }
         },
         'second result': {
@@ -62,7 +62,7 @@ vows.describe('analyser').addBatch({
                 return results[1];
             },
             'should have the correct properties': function(result) {
-                assert.deepEqual(result, { shortName: 'pants', lineStart: 4, lines: 3, ins: 0, complexity: 2 });
+              assert.deepEqual(result, { shortName: 'pants', lineStart: 4, lines: 3, ins: 0, complexity: 2, config: {} });
             }
         }
     },
@@ -83,6 +83,29 @@ vows.describe('analyser').addBatch({
         'first result should have a name of cheese': function(result) {
             assert.equal(result[0].shortName, 'cheese');
         }
+    },
+  'given a function with "functionLength" comment preceding': {
+    topic: analyser.analyse('/* @jscheckstyle.functionLength=7 */ function func1() {}'),
+    'first result should have a config structure with functionLength=7': function(result) {
+      assert.equal(result[0].shortName, 'func1');
+      assert.equal(result[0].config.functionLength, 7);
     }
+  },
+
+  'given a function with "cyclomaticComplexity" comment preceding': {
+    topic: analyser.analyse('// @jscheckstyle.cyclomaticComplexity=7\nfunction func1() {}'),
+    'first result should have a config structure with cyclomaticComplexity=7': function(result) {
+      assert.equal(result[0].shortName, 'func1');
+      assert.equal(result[0].config.cyclomaticComplexity, 7);
+    }
+  },
+
+  'given a function with "numberOfArguments" comment preceding': {
+    topic: analyser.analyse('// @jscheckstyle.numberOfArguments=7\nfunction func1() {}'),
+    'first result should have a config structure with numberOfArguments=7': function(result) {
+      assert.equal(result[0].shortName, 'func1');
+      assert.equal(result[0].config.numberOfArguments, 7);
+    }
+  }
 
 }).exportTo(module);

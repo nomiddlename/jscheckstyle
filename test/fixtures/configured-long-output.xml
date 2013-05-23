@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle>
+<file name="/pants/file1.js">
+<error line="4" column="1" severity="error" message="longFunction is 23 lines long, maximum allowed is 20" source="FunctionLength"/>
+</file>
+</checkstyle>

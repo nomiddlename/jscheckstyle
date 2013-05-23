@@ -34,6 +34,7 @@ vows.describe("checkstyle renderer").addBatch({
     'with simple input': given('simple.js', expect('no-errors.xml')),
     'with a cyclomatic complexity violation': given('complex-function.js', expect('complex-output.xml')),
     'with a function length violation': given('long-function.js', expect('long-output.xml')),
+    'with a configured function length violation': given('configured-long-function.js', expect('configured-long-output.xml')),
     'with a number of arguments violation': given('too-many-arguments.js', expect('too-many-arguments-output.xml')),
     'with multiple violations in a single function': given('lots-of-args-and-long.js', expect('lots-of-args-and-long-output.xml')),
     'module.exports should not trigger function length violation': given('a-long-module.js', expect('no-errors.xml')),
