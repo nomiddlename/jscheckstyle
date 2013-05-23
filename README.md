@@ -26,8 +26,20 @@ There are three rules at the moment which will be violated if:
 ## Exclusion
 To exclude certain directories or files from being checkstyled, simply create a .jscheckstyleignore file at current directory, and specify the directory or file name (relative to current directory) that you want to exclude.
 
-## TODO
-* Configurable rules (maybe you like functions that are longer or shorter)
+## Configuration
+It is possible to change the default rules by specifying different limits in comments before a function.
+
+For example:
+
+    /*
+     * @jscheckstyle.functionLength=20
+     * @jscheckstyle.numberOfArguments=10
+     * @jscheckstyle.cyclomaticComplexity=30
+     */
+    function theFunction() {
+        ...
+    }
+
 
 ## History
 Originally I started out modifying [jsmeter](http://jsmeter.info) to run as a command-line tool. Then I started hacking away, added some tests, the command-line interface, added the rules checking and the extra output types, replaced the parser with [node-burrito](https://github.com/substack/node-burrito) and then realised there wasn't much of jsmeter left. So this tool is inspired by, and owes a huge debt to, jsmeter - but there's very little of the original code to be found (possibly only the HTML output renderer).

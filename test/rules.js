@@ -119,7 +119,26 @@ vows.describe('rules').addBatch({
             'should not ignore the long function': function(violations) {
                 assert.lengthOf(violations.filter(function(result) { return result.shortName === 'longFunction' && result.violations && result.violations.length === 1; }), 1);
             }
+        },
+        'when passed a function with configured functionLength limit': {
+            topic: function(checker) {
+                return checker.check([
+                    { lineStart: 1, shortName: "module.exports", lines: 50, config: { functionLength: 40 } },
+                    { lineStart: 5, shortName: "shortFunction", lines: 31, config: { functionLength: 40 } },
+                    { lineStart: 16, shortName: "longFunction", lines: 41, config: { functionLength: 40 } }
+                ]);
+            },
+            'should ignore module.exports': function(violations) {
+                assert.lengthOf(violations.filter(function(result) { return result.shortName === 'module.exports' && result.violations; }), 0);
+            },
+            'should ignore the short function': function(violations) {
+                assert.lengthOf(violations.filter(function(result) { return result.shortName === 'shortFunction' && result.violations; }), 0);
+            },
+            'should not ignore the long function': function(violations) {
+                assert.lengthOf(violations.filter(function(result) { return result.shortName === 'longFunction' && result.violations && result.violations.length === 1; }), 1);
+            }
         }
+
     },
     'NumberOfArguments checker': {
         topic: rules.filter(function(rule) { return rule.name === "NumberOfArguments"; })[0],
@@ -146,7 +165,16 @@ vows.describe('rules').addBatch({
             'should return the original result with no violations': function(violations) {
                 assert.deepEqual(violations, [{ lineStart: 4, shortName: "cheese", ins: 2 }]);
             }
+        },
+        'when passed a function with less than configured number of arguments': {
+            topic: function(checker) {
+                return checker.check([{ lineStart: 4, shortName: "cheese", ins: 7, config: { numberOfArguments: 10 } }]);
+            },
+            'should return the original result with no violations': function(violations) {
+                assert.deepEqual(violations, [{ lineStart: 4, shortName: "cheese", ins: 7, config: { numberOfArguments: 10 } }]);
+            }
         }
+
     },
     'CyclomaticComplexity checker': {
         topic: rules.filter(function(rule) { return rule.name === "CyclomaticComplexity"; })[0],
@@ -173,6 +201,15 @@ vows.describe('rules').addBatch({
             'should return the original result with no violations': function(violations) {
                 assert.deepEqual(violations, [{ lineStart: 4, shortName: "cheese", complexity: 2 }]);
             }
+        },
+        'when passed a function with a cyclomatic complexity less than a configured limit': {
+            topic: function(checker) {
+              return checker.check([{ lineStart: 4, shortName: "cheese", complexity: 12, config: { cyclomaticComplexity: 15 } }]);
+            },
+            'should return the original result with no violations': function(violations) {
+                assert.deepEqual(violations, [{ lineStart: 4, shortName: "cheese", complexity: 12, config: { cyclomaticComplexity: 15 } }]);
+            }
         }
+
     }
 }).exportTo(module);
